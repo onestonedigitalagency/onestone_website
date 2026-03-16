@@ -1,6 +1,33 @@
-import React from 'react'
+import React , { useState, useEffect } from 'react'
 
 function ServicesOverview() {
+
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  // Array of Unsplash images
+  const images = [
+    'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=500&fit=crop',
+    'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&h=500&fit=crop',
+    'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400&h=500&fit=crop',
+    'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&h=500&fit=crop',
+    'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=500&fit=crop',
+    'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=500&fit=crop',
+    'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=500&fit=crop',
+    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=500&fit=crop',
+  ]
+
+  // Change image every second
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => 
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      )
+    }, 1000)
+
+    // Cleanup on unmount
+    return () => clearInterval(interval)
+  }, [images.length])
   const services = [
     {
       id: '01',
@@ -70,12 +97,55 @@ function ServicesOverview() {
           Contact us
         </a>
       </div>
-      <div id="row-3" className='mt-12 pt-14 border-b  border-gray-300 pb-8'>
-        <h1 className='text-5xl md:text-7xl md:w-4xl uppercase'>Let's craftyour project together</h1>
-        <a href="/contact" className='mt-8  text-xl md:text-3xl inline-block underline  transition-colors'>
-          Contact us
-        </a>
+     
+
+
+    <div 
+      id="row-3" 
+      className='mt-4 pt-14 border-b flex-col-reverse flex md:flex-row justify-between border-gray-300 pb-8'
+    >
+      {/* Col 1 - Random Image */}
+      <div id="col-1" className='mb-8 md:mb-0'>
+        <div className='w-auto h-60 overflow-hidden rounded-lg'>
+          <img 
+            src={images[currentImageIndex]} 
+            alt="Random showcase"
+            className='w-96 h-full object-cover transition-opacity duration-300'
+          />
+        </div>
       </div>
+
+      {/* Col 2 - Terms/Legal */}
+      <div id="col-2" className='flex flex-col justify-satrt md:justify-end md:items-end'>
+        <ul className='text-left  text-xl py-10 md:py-0 md:text-3xl font-extralight'>
+          <li className='hover:font-light transition-all cursor-pointer'>
+            Terms and Conditions
+          </li>
+          <li className='hover:font-light transition-all cursor-pointer'>
+            Legal
+          </li>
+          <li className='hover:font-light transition-all cursor-pointer'>
+            Credits
+          </li>
+        </ul>
+      </div>
+
+      {/* Col 3 - Main Navigation */}
+      <div id="col-3" className='text-end'>
+        <ul>
+          <li className='text-5xl uppercase md:text-7xl cursor-pointer hover:font-light transition-all'>
+            Works
+          </li>
+          <li className='text-5xl uppercase md:text-7xl cursor-pointer hover:font-light transition-all'>
+            About
+          </li>
+          <li className='text-5xl uppercase md:text-7xl cursor-pointer hover:font-light transition-all'>
+            Contact
+          </li>
+        </ul>
+      </div>
+    </div>
+ 
       
     </div>
   )
