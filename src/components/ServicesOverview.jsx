@@ -102,7 +102,7 @@ function ServicesOverview() {
 
     <div 
       id="row-3" 
-      className='mt-4 pt-14 border-b flex-col-reverse flex md:flex-row justify-between border-gray-300 pb-8'
+      className='mt-4 pt-14  flex-col-reverse flex md:flex-row justify-between border-gray-300 pb-8'
     >
       {/* Col 1 - Random Image */}
       <div id="col-1" className='mb-8 md:mb-0'>
