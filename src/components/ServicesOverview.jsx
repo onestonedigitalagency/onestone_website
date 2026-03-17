@@ -101,50 +101,50 @@ function ServicesOverview() {
 
 
     <div 
-      id="row-3" 
-      className='mt-4 pt-14  flex-col-reverse flex md:flex-row justify-between border-gray-300 pb-8'
-    >
-      {/* Col 1 - Random Image */}
-      <div id="col-1" className='mb-8 md:mb-0'>
-        <div className='w-auto h-60 overflow-hidden rounded-lg'>
-          <img 
-            src={images[currentImageIndex]} 
-            alt="Random showcase"
-            className='w-96 h-full object-cover transition-opacity duration-300'
-          />
-        </div>
-      </div>
-
-      {/* Col 2 - Terms/Legal */}
-      <div id="col-2" className='flex flex-col justify-satrt md:justify-end md:items-end'>
-        <ul className='text-left  text-xl py-10 md:py-0 md:text-3xl font-extralight'>
-          <li className='hover:font-light transition-all cursor-pointer'>
-            Terms and Conditions
-          </li>
-          <li className='hover:font-light transition-all cursor-pointer'>
-            Legal
-          </li>
-          <li className='hover:font-light transition-all cursor-pointer'>
-            Credits
-          </li>
-        </ul>
-      </div>
-
-      {/* Col 3 - Main Navigation */}
-      <div id="col-3" className='text-end'>
-        <ul>
-          <li className='text-5xl uppercase md:text-7xl cursor-pointer hover:font-light transition-all'>
-            Works
-          </li>
-          <li className='text-5xl uppercase md:text-7xl cursor-pointer hover:font-light transition-all'>
-            About
-          </li>
-          <li className='text-5xl uppercase md:text-7xl cursor-pointer hover:font-light transition-all'>
-            Contact
-          </li>
-        </ul>
-      </div>
+  id="row-3" 
+  className='mt-4 pt-14 flex-col-reverse flex md:flex-row justify-between border-gray-300 pb-8'
+>
+  {/* Col 1 - Random Image - Fixed width */}
+  <div id="col-1" className='mb-8 md:mb-0 md:w-1/3'>
+    <div className='w-auto h-60 overflow-hidden rounded-lg'>
+      <img 
+        src={images[currentImageIndex]} 
+        alt="Random showcase"
+        className='w-96 h-full object-cover transition-opacity duration-300'
+      />
     </div>
+  </div>
+
+  {/* Col 2 - Terms/Legal - Fixed width */}
+  <div id="col-2" className='flex flex-col justify-start md:justify-end md:items-end md:w-1/3'> 
+  <ul className='text-left text-xl py-10 md:py-0 md:text-3xl font-extralight'>
+  <li className='opacity-70 hover:opacity-100 transition-opacity cursor-pointer'>
+    Terms and Conditions
+  </li>
+  <li className='opacity-70 hover:opacity-100 transition-opacity cursor-pointer'>
+    Legal
+  </li>
+  <li className='opacity-70 hover:opacity-100 transition-opacity cursor-pointer'>
+    Credits
+  </li>
+</ul>
+</div>
+
+  {/* Col 3 - Main Navigation - Fixed width */}
+  <div id="col-3" className='text-end md:w-1/3'>
+    <ul>
+      <li className='text-5xl uppercase md:text-7xl cursor-pointer hover:font-light transition-all'>
+        Works
+      </li>
+      <li className='text-5xl uppercase md:text-7xl cursor-pointer hover:font-light transition-all'>
+        About
+      </li>
+      <li className='text-5xl uppercase md:text-7xl cursor-pointer hover:font-light transition-all'>
+        Contact
+      </li>
+    </ul>
+  </div>
+</div>
  
       
     </div>
