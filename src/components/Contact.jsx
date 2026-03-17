@@ -249,7 +249,7 @@ function Contact({ isOpen, onClose }) {
                     />
                     <motion.button
                       type="submit"
-                      className="italic px-4 py-2 text-xl md:text-2xl whitespace-nowrap"
+                      className="italic px-4 py-2 text-xl md:text-2xl hover:underline whitespace-nowrap"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                     >

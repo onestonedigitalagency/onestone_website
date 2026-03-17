@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import Contact from './Contact' // Import your Contact component
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isContactOpen, setIsContactOpen] = useState(false)
 
   // Handle scroll effect
   useEffect(() => {
@@ -24,19 +26,42 @@ function Navbar() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Prevent scroll when menu is open
+  // Prevent scroll when menu is open (Contact handles its own scroll lock)
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden'
-    } else {
+    } else if (!isContactOpen) {
       document.body.style.overflow = 'unset'
     }
     return () => {
-      document.body.style.overflow = 'unset'
+      if (!isContactOpen) {
+        document.body.style.overflow = 'unset'
+      }
     }
-  }, [isMenuOpen])
+  }, [isMenuOpen, isContactOpen])
+
+  // Close modals with Escape key
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setIsContactOpen(false)
+        setIsMenuOpen(false)
+      }
+    }
+    window.addEventListener('keydown', handleEscape)
+    return () => window.removeEventListener('keydown', handleEscape)
+  }, [])
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+  
+  const openContact = () => {
+    setIsMenuOpen(false)
+    setIsContactOpen(true)
+  }
+
+  const closeContact = () => {
+    setIsContactOpen(false)
+  }
 
   return (
     <>
@@ -85,9 +110,12 @@ function Navbar() {
 
             {/* Contact */}
             <li className='uppercase font-semibold cursor-pointer text-sm lg:text-base'>
-              <a href="/contact" className='hover:opacity-70 transition-opacity'>
+              <button 
+                onClick={openContact}
+                className='hover:opacity-70 transition-opacity'
+              >
                 Contact
-              </a>
+              </button>
             </li>
 
             {/* Social Links */}
@@ -184,13 +212,12 @@ function Navbar() {
                          ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
               style={{ transitionDelay: isMenuOpen ? '300ms' : '0ms' }}
             >
-              <a 
-                href="/contact" 
-                onClick={() => setIsMenuOpen(false)}
+              <button 
+                onClick={openContact}
                 className='uppercase font-semibold text-4xl sm:text-5xl hover:opacity-70 transition-opacity'
               >
                 Contact
-              </a>
+              </button>
             </li>
 
             {/* Mobile - Social Links */}
@@ -221,6 +248,9 @@ function Navbar() {
           </ul>
         </div>
       </div>
+
+      {/* Contact Modal - Using your Contact.jsx component */}
+      <Contact isOpen={isContactOpen} onClose={closeContact} />
     </>
   )
 }
