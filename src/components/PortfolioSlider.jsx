@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useLayoutEffect } from 'react'
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Project data - replace with your own
 const projects = [
   { id: 1, title: "Valentine's Day", client: 'Marc Jacobs', category: 'Fashion', image: '/images/project-1.jpg', slug: 'valentines-day' },
   { id: 2, title: 'TVC 100 ans', client: 'Linvosges', category: 'Commercials', image: '/images/project-2.jpg', slug: 'tvc-100-ans' },
@@ -21,7 +20,24 @@ const projects = [
 
 const PortfolioSlider = () => {
   const containerRef = useRef(null)
+  const trackRef = useRef(null)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [trackWidth, setTrackWidth] = useState(0)
+  const [windowWidth, setWindowWidth] = useState(0)
+
+  // Calculate track width on mount and resize
+  useLayoutEffect(() => {
+    const calculateWidth = () => {
+      if (trackRef.current) {
+        setTrackWidth(trackRef.current.scrollWidth)
+        setWindowWidth(window.innerWidth)
+      }
+    }
+    
+    calculateWidth()
+    window.addEventListener('resize', calculateWidth)
+    return () => window.removeEventListener('resize', calculateWidth)
+  }, [])
 
   // Scroll progress for horizontal movement
   const { scrollYProgress } = useScroll({
@@ -36,8 +52,11 @@ const PortfolioSlider = () => {
     restDelta: 0.001
   })
 
-  // Transform vertical scroll to horizontal movement
-  const x = useTransform(smoothProgress, [0, 1], ['0%', '-90%'])
+  // Calculate the exact amount to move (track width - visible area)
+  const scrollDistance = trackWidth - windowWidth + 200 // 200 for padding
+
+  // Transform vertical scroll to horizontal movement with exact pixels
+  const x = useTransform(smoothProgress, [0, 1], [0, -scrollDistance])
 
   // Update current index based on scroll
   useEffect(() => {
@@ -46,7 +65,7 @@ const PortfolioSlider = () => {
         Math.floor(latest * projects.length),
         projects.length - 1
       )
-      if (index !== currentIndex) {
+      if (index !== currentIndex && index >= 0) {
         setCurrentIndex(index)
       }
     })
@@ -69,11 +88,14 @@ const PortfolioSlider = () => {
     return () => ctx.revert()
   }, [])
 
+  // Calculate container height based on scroll distance needed
+  const containerHeight = Math.max(scrollDistance + window.innerHeight, window.innerHeight * 2)
+
   return (
     <section
       ref={containerRef}
       className="portfolio-slider"
-      style={{ height: `${(projects.length + 1) * 100}vh` }}
+      style={{ height: `${containerHeight}px` }}
     >
       {/* Sticky Container */}
       <div className="portfolio-slider__sticky">
@@ -103,13 +125,13 @@ const PortfolioSlider = () => {
             <div className="portfolio-slider__title-left">
               <AnimatePresence mode="wait">
                 <motion.span
-                  key={projects[currentIndex].title}
+                  key={projects[currentIndex]?.title}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -10 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {projects[currentIndex].title}
+                  {projects[currentIndex]?.title}
                 </motion.span>
               </AnimatePresence>
             </div>
@@ -130,7 +152,11 @@ const PortfolioSlider = () => {
 
           {/* Center - Images Slider */}
           <div className="portfolio-slider__center">
-            <motion.div style={{ x }} className="portfolio-slider__track">
+            <motion.div 
+              ref={trackRef}
+              style={{ x }} 
+              className="portfolio-slider__track"
+            >
               {projects.map((project, index) => (
                 <a
                   key={project.id}
@@ -138,7 +164,6 @@ const PortfolioSlider = () => {
                   className="portfolio-slider__card"
                 >
                   <div className="portfolio-slider__image-wrap">
-                    {/* Replace with your images */}
                     <div 
                       className="portfolio-slider__image"
                       style={{
@@ -147,8 +172,6 @@ const PortfolioSlider = () => {
                           hsl(${index * 36 + 30}, 40%, 75%) 100%)`,
                       }}
                     >
-                      {/* Uncomment when you have images */}
-                      {/* <img src={project.image} alt={project.title} /> */}
                       <span className="portfolio-slider__placeholder">{project.client}</span>
                     </div>
                   </div>
@@ -163,13 +186,13 @@ const PortfolioSlider = () => {
             <div className="portfolio-slider__category">
               <AnimatePresence mode="wait">
                 <motion.span
-                  key={projects[currentIndex].category}
+                  key={projects[currentIndex]?.category}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.4 }}
                 >
-                  {projects[currentIndex].category}
+                  {projects[currentIndex]?.category}
                 </motion.span>
               </AnimatePresence>
             </div>
