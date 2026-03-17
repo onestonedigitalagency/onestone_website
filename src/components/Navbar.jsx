@@ -109,13 +109,10 @@ function Navbar() {
             </li>
 
             {/* Contact */}
-            <li className='uppercase font-semibold cursor-pointer text-sm lg:text-base'>
-              <button 
-                onClick={openContact}
-                className='hover:opacity-70 transition-opacity'
-              >
+            <li onClick={openContact} className='uppercase hover:opacity-70 transition-opacity font-semibold cursor-pointer text-sm lg:text-base'>
+              
                 Contact
-              </button>
+              
             </li>
 
             {/* Social Links */}
