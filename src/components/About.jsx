@@ -9,30 +9,7 @@ function About() {
 
   // Team members data
   const team = [
-    { 
-      name: 'Alex Chen', 
-      role: 'Creative Director', 
-      img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80',
-      description: 'Visionary leader with 10+ years in brand strategy'
-    },
-    { 
-      name: 'Sarah Miller', 
-      role: 'Lead Designer', 
-      img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80',
-      description: 'Award-winning designer focused on digital experiences'
-    },
-    { 
-      name: 'James Wilson', 
-      role: 'Senior Developer', 
-      img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80',
-      description: 'Full-stack expert building seamless web solutions'
-    },
-    { 
-      name: 'Emma Davis', 
-      role: 'Art Director', 
-      img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&q=80',
-      description: 'Visual storyteller with passion for bold aesthetics'
-    },
+   
     { 
       name: 'Michael Brown', 
       role: 'Motion Designer', 
@@ -198,7 +175,6 @@ function About() {
           </div>
         </section>
 
-        {/* Stats Section */}
         <section className='w-full border-y border-gray-200 py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32'>
           <div className='grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12'>
             <div className='text-center md:text-left'>
@@ -236,7 +212,6 @@ function About() {
           </div>
         </section>
 
-        {/* Philosophy Section */}
         <section className='w-full py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 bg-black text-white'>
           <div className='max-w-5xl mx-auto text-center'>
             <span className='text-sm uppercase tracking-widest text-gray-400 mb-8 block'>
@@ -272,7 +247,6 @@ function About() {
           </div>
         </section>
 
-        {/* Team Section */}
         <section className='w-full py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32'>
           <div className='flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 sm:mb-16 gap-4'>
             <h2 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase font-semibold'>
@@ -310,7 +284,6 @@ function About() {
           </div>
         </section>
 
-        {/* Services Section */}
         <section className='w-full py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 border-t border-gray-200'>
           <div className='flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 sm:mb-16 gap-4'>
             <h2 className='text-4xl sm:text-5xl md:text-6xl lg:text-7xl uppercase font-semibold'>
@@ -344,7 +317,6 @@ function About() {
           </div>
         </section>
 
-        {/* Clients Section */}
         <section className='w-full py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 border-t border-gray-200'>
           <div className='text-center mb-12 sm:mb-16'>
             <span className='text-sm uppercase tracking-widest text-gray-500 mb-4 block'>
@@ -354,8 +326,7 @@ function About() {
               Brands we've had the pleasure to work with
             </h2>
           </div>
-          
-          {/* Scrolling logos (simplified text version) */}
+       
           <div className='overflow-hidden'>
             <div className='flex gap-8 sm:gap-12 md:gap-16 animate-marquee'>
               {[...clients, ...clients].map((client, index) => (
@@ -371,34 +342,8 @@ function About() {
             </div>
           </div>
         </section>
-
-        {/* CTA Section */}
-        <section className='w-full py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 
-                           bg-gray-50 border-t border-gray-200'>
-          <div className='max-w-4xl mx-auto text-center'>
-            <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 
-                           uppercase font-semibold leading-tight mb-6 sm:mb-8'>
-              Ready to start your 
-              <span className='font-cookie normal-case font-normal'> project</span>?
-            </h2>
-            <p className='text-gray-600 font-light text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto'>
-              Let's collaborate and bring your vision to life. We're excited to hear about your ideas.
-            </p>
-            <button
-              onClick={openContact}
-              className='px-8 sm:px-10 py-4 sm:py-5 bg-black text-white 
-                         uppercase font-semibold text-sm sm:text-base
-                         hover:bg-gray-800 transition-colors rounded-full'
-            >
-              Get in Touch
-            </button>
-          </div>
-        </section>
-
     
       </div>
-
-      {/* Contact Modal */}
       <Contact isOpen={isContactOpen} onClose={closeContact} />
     </>
   )

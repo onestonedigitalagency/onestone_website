@@ -42,27 +42,27 @@ function Footer() {
     <>
       <footer className='w-full px-4 '>
         {/* CTA Section */}
-        <div 
-          id="cta-section" 
-          className='mt-12 pt-10 sm:pt-14 border-b border-t border-gray-300 pb-6 sm:pb-8'
-        >
-          <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 
-                         uppercase leading-tight
-                         max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl'>
-            Let's craft your project together
-          </h1>
-          {/* Changed from <a> to <button> to open modal */}
-          <button 
-            onClick={openContact}
-            className='mt-6 sm:mt-8 
-                       text-lg sm:text-xl md:text-2xl lg:text-3xl 
-                       inline-block underline 
-                       hover:opacity-70 transition-opacity
-                       cursor-pointer'
-          >
-            Contact us
-          </button>
-        </div>
+         <section className='w-full py-16 sm:py-20 md:py-28 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 
+                           bg-gray-50 border-t border-gray-200'>
+          <div className='max-w-4xl mx-auto text-center'>
+            <h2 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 
+                           uppercase font-semibold leading-tight mb-6 sm:mb-8'>
+              Ready to start your 
+              <span className='font-cookie normal-case font-normal'> project</span>?
+            </h2>
+            <p className='text-gray-600 font-light text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-2xl mx-auto'>
+              Let's collaborate and bring your vision to life. We're excited to hear about your ideas.
+            </p>
+            <button
+              onClick={openContact}
+              className='px-8 sm:px-10 py-4 sm:py-5 bg-black text-white 
+                         uppercase font-semibold text-sm sm:text-base
+                         hover:bg-gray-800 transition-colors rounded-full'
+            >
+              Get in Touch
+            </button>
+          </div>
+        </section>
 
         {/* Footer Navigation */}
         <div

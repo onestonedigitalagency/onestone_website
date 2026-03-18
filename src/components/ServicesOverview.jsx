@@ -48,24 +48,14 @@ function ServicesOverview() {
   ]
 
   return (
-    <div className='w-full min-h-screen'>
-      
-      {/* Row 1 */}
-      <div className='flex justify-end'>
+    <div className='w-full min-h-fit pb-16'>
+    
+      <div className='flex justify-end px-10'>
         <h1 className='w-xs md:w-3xl text-5xl md:text-9xl uppercase text-end leading-tight'>
           Our services
         </h1>
       </div>
-
-      {/* Row 2 */}
-      <div className='pt-8 pb-8'>
-        <h1 className='w-full md:w-3xl text-5xl md:text-9xl uppercase leading-tight'>
-          List your services
-        </h1>
-      </div>
-
-      {/* Row 3 */}
-      <div className='w-full grid grid-cols-1 px-10 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-16'>
+      <div className='w-full grid grid-cols-1 px-10 sm:grid-cols-2 lg:grid-cols-4 justify-between pt-16'>
         {services.map((service) => (
           <div key={service.id}>
             <h2 className='text-2xl md:text-3xl font-bold mb-4'>
