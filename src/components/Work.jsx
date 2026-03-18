@@ -8,12 +8,7 @@ const ALL_PROJECTS = [
   { id: 3, title: 'Nexus', year: '2024', tags: 'UI/UX, App Development', img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80' },
   { id: 4, title: 'Kroma', year: '2023', tags: 'Packaging, Print', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80' },
   { id: 5, title: 'Verve', year: '2024', tags: 'Photography, Campaign', img: 'https://images.unsplash.com/photo-1528301721190-186c3bd85418?w=800&q=80' },
-  { id: 6, title: 'Echo', year: '2022', tags: 'Brand Strategy, Copywriting', img: 'https://images.unsplash.com/photo-1541462608143-67571c6738dd?w=800&q=80' },
-  { id: 7, title: 'Nova', year: '2024', tags: 'E-commerce, WebGL', img: 'https://images.unsplash.com/photo-1621619856624-42fd193a0661?w=800&q=80' },
-  { id: 8, title: 'Zenith', year: '2023', tags: 'Animation, Social Media', img: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80' },
-  { id: 9, title: 'Pulse', year: '2024', tags: 'Sound Design, Video', img: 'https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=800&q=80' },
-  { id: 10, title: 'Orbit', year: '2023', tags: 'Spatial Design, 3D', img: 'https://images.unsplash.com/photo-1618005192384-a83a8bd57fbe?w=800&q=80' },
-]
+   ]
 
 function Work() {
   // --- 2. STATE MANAGEMENT ---
@@ -87,7 +82,7 @@ function Work() {
         {/* Grid Section */}
         <div className='grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-10 flex-1'>
             
-            {displayedProjects.map((project, index) => (
+            {ALL_PROJECTS.map((project, index) => (
               <React.Fragment key={project.id}>
                 
                 {/* Standard Project Card */}

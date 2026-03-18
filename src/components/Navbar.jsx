@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import Contact from './Contact'
+import icon from '../assets/icon.ico'
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -61,14 +62,23 @@ function Navbar() {
   const openContact = () => { setIsMenuOpen(false); setIsContactOpen(true) }
   const closeContact = () => setIsContactOpen(false)
 
+  // Check if we should use light (white) styling
+  const isLightMode = isHomePage && !isScrolled && !isMenuOpen
+
   // Determine navbar styles based on page and scroll position
   const getNavbarStyles = () => {
+    // When mobile menu is open, always use dark text
+    if (isMenuOpen) {
+      return 'bg-transparent text-black'
+    }
+    
     // Home page: white text initially, black text on scroll
     if (isHomePage) {
       return isScrolled
         ? 'bg-white/90 backdrop-blur-md shadow-sm text-black'
         : 'bg-transparent text-white'
     }
+    
     // Other pages: always black text with white background on scroll
     return isScrolled
       ? 'bg-white/90 backdrop-blur-md shadow-sm text-black'
@@ -88,9 +98,16 @@ function Navbar() {
         <div className='font-bold text-xl sm:text-2xl md:text-3xl z-50'>
           <Link
             to="/"
-            className='hover:opacity-70 transition-opacity'
+            className='hover:opacity-70 transition-opacity flex items-center gap-2'
           >
-            OneStone
+            <img 
+              src={icon} 
+              alt="OneStone Logo"
+              className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 object-contain
+                         transition-all duration-500
+                         ${isLightMode ? 'invert brightness-0 invert' : 'brightness-0'}`}
+            />
+            <span>OneStone</span>
           </Link>
         </div>
 
@@ -156,7 +173,9 @@ function Navbar() {
         {/* Mobile Hamburger Button */}
         <button
           onClick={toggleMenu}
-          className='md:hidden z-50 p-2 -mr-2 focus:outline-none'
+          className={`md:hidden z-50 p-2 -mr-2 focus:outline-none
+                     transition-colors duration-300
+                     ${isMenuOpen ? 'text-black' : ''}`}
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMenuOpen}
         >

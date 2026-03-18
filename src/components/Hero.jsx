@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
-
+import icon from '../assets/icon.ico'
 function Hero() {
   const [isLoading, setIsLoading] = useState(true)
   const [loadingProgress, setLoadingProgress] = useState(0)
@@ -102,12 +102,19 @@ function Hero() {
             initial="initial"
             exit="exit"
           >
-            <div className="relative w-full max-w-md px-8">
+            <div className="relative w-full text-centerjustify-center items-center max-w-md px-8">
               <motion.div
                 className="overflow-hidden mb-8"
                 variants={loaderTextVariants}
                 exit="exit"
               >
+               <motion.img 
+    src={icon} 
+    alt="OneStone Logo"
+    className="w-40 h-16 mb-6 object-contain" // Adjust size as needed
+    initial={{ scale: 0.8, opacity: 1 }}
+    
+  />
                 <motion.h1
                   className="text-4xl sm:text-5xl md:text-6xl text-white font-bold text-center"
                   initial={{ y: 100 }}
