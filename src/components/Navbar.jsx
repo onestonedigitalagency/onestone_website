@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import Contact from './Contact' // Import your Contact component
+import { Link, useLocation } from 'react-router-dom'
+import Contact from './Contact'
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [isContactOpen, setIsContactOpen] = useState(false)
+  
+  // Get current route
+  const location = useLocation()
+  const isHomePage = location.pathname === '/'
 
   // Handle scroll effect
   useEffect(() => {
@@ -26,7 +31,7 @@ function Navbar() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  // Prevent scroll when menu is open (Contact handles its own scroll lock)
+  // Prevent scroll when menu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden'
@@ -53,82 +58,92 @@ function Navbar() {
   }, [])
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
-  
-  const openContact = () => {
-    setIsMenuOpen(false)
-    setIsContactOpen(true)
-  }
+  const openContact = () => { setIsMenuOpen(false); setIsContactOpen(true) }
+  const closeContact = () => setIsContactOpen(false)
 
-  const closeContact = () => {
-    setIsContactOpen(false)
+  // Determine navbar styles based on page and scroll position
+  const getNavbarStyles = () => {
+    // Home page: white text initially, black text on scroll
+    if (isHomePage) {
+      return isScrolled
+        ? 'bg-white/90 backdrop-blur-md shadow-sm text-black'
+        : 'bg-transparent text-white'
+    }
+    // Other pages: always black text with white background on scroll
+    return isScrolled
+      ? 'bg-white/90 backdrop-blur-md shadow-sm text-black'
+      : 'bg-transparent text-black'
   }
 
   return (
     <>
-      <nav 
-        className={`w-full h-16 md:h-20 flex items-center justify-between 
+      <nav
+        className={`w-full h-16 md:h-20 flex items-center justify-between
                     px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32
-                    fixed top-0 left-0 z-50 transition-all duration-300
-                    ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-sm' : 'bg-transparent'}`}
+                    fixed top-0 left-0 z-50 
+                    transition-all duration-500
+                    ${getNavbarStyles()}`}
       >
         {/* Branding */}
-        <div 
-          id="branding" 
-          className='font-bold text-xl sm:text-2xl md:text-3xl z-50'
-        >
-          <a href="/" className='hover:opacity-80 transition-opacity'>
+        <div className='font-bold text-xl sm:text-2xl md:text-3xl z-50'>
+          <Link
+            to="/"
+            className='hover:opacity-70 transition-opacity'
+          >
             OneStone
-          </a>
+          </Link>
         </div>
 
         {/* Desktop Menu */}
         <div id="desktop-menu" className='hidden md:block'>
           <ul className='flex items-center gap-4 lg:gap-6 xl:gap-8'>
+
             {/* Works */}
-            <li className='uppercase flex font-semibold group relative cursor-pointer text-sm lg:text-base'>
-              <a href="/works" className='flex'>
+            <li className='uppercase flex font-semibold group cursor-pointer text-sm lg:text-base'>
+              <Link to="/works" className='flex hover:opacity-70 transition-opacity'>
                 <span>Works</span>
                 <span className='whitespace-nowrap max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 ease-out'>
                   <span className='pl-1'>
                     <span className='lowercase font-light italic'>we've</span> done
                   </span>
                 </span>
-              </a>
+              </Link>
             </li>
 
             {/* About */}
-            <li className='uppercase flex font-semibold group relative cursor-pointer text-sm lg:text-base'>
-              <a href="/about" className='flex'>
+            <li className='uppercase flex font-semibold group cursor-pointer text-sm lg:text-base'>
+              <Link to="/about" className='flex hover:opacity-70 transition-opacity'>
                 <span>About</span>
                 <span className='whitespace-nowrap max-w-0 overflow-hidden group-hover:max-w-[150px] transition-all duration-500 ease-out'>
                   <span className='pl-1'>
                     <span className='lowercase font-light italic'>our</span> story
                   </span>
                 </span>
-              </a>
+              </Link>
             </li>
 
             {/* Contact */}
-            <li onClick={openContact} className='uppercase hover:opacity-70 transition-opacity font-semibold cursor-pointer text-sm lg:text-base'>
-              
-                Contact
-              
+            <li
+              onClick={openContact}
+              className='uppercase font-semibold cursor-pointer text-sm lg:text-base hover:opacity-70 transition-opacity'
+            >
+              Contact
             </li>
 
             {/* Social Links */}
             <li className='uppercase font-semibold text-sm lg:text-base'>
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
+              <a
+                href="https://instagram.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 className='hover:opacity-70 transition-opacity'
               >
                 IG
               </a>
-              <span className='mx-1'>/</span>
-              <a 
-                href="https://youtube.com" 
-                target="_blank" 
+              <span className='mx-1 opacity-40'>/</span>
+              <a
+                href="https://youtube.com"
+                target="_blank"
                 rel="noopener noreferrer"
                 className='hover:opacity-70 transition-opacity'
               >
@@ -138,23 +153,23 @@ function Navbar() {
           </ul>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Hamburger Button */}
         <button
           onClick={toggleMenu}
           className='md:hidden z-50 p-2 -mr-2 focus:outline-none'
           aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           aria-expanded={isMenuOpen}
         >
-          <div className='w-6 h-5 relative flex flex-col justify-between'>
-            <span 
+          <div className='w-6 h-5 flex flex-col justify-between'>
+            <span
               className={`w-full h-0.5 bg-current transform transition-all duration-300 origin-center
                          ${isMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
             />
-            <span 
+            <span
               className={`w-full h-0.5 bg-current transition-all duration-300
                          ${isMenuOpen ? 'opacity-0 scale-0' : ''}`}
             />
-            <span 
+            <span
               className={`w-full h-0.5 bg-current transform transition-all duration-300 origin-center
                          ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
             />
@@ -163,53 +178,54 @@ function Navbar() {
       </nav>
 
       {/* Mobile Menu Overlay */}
-      <div 
-        className={`fixed inset-0 bg-white z-40 md:hidden transition-all duration-500 ease-in-out
+      <div
+        className={`fixed inset-0 bg-white text-black z-40 md:hidden 
+                   transition-all duration-500 ease-in-out
                    ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
       >
-        <div 
-          className={`h-full flex flex-col justify-center items-center 
+        <div
+          className={`h-full flex flex-col justify-center items-center
                      transition-all duration-500 delay-100
                      ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}
         >
           <ul className='flex flex-col items-center gap-6 sm:gap-8'>
             {/* Mobile - Works */}
-            <li 
-              className={`transform transition-all duration-300 
+            <li
+              className={`transition-all duration-300
                          ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
               style={{ transitionDelay: isMenuOpen ? '100ms' : '0ms' }}
             >
-              <a 
-                href="/works" 
+              <Link
+                to="/works"
                 onClick={() => setIsMenuOpen(false)}
                 className='uppercase font-semibold text-4xl sm:text-5xl hover:opacity-70 transition-opacity'
               >
                 Works
-              </a>
+              </Link>
             </li>
 
             {/* Mobile - About */}
-            <li 
-              className={`transform transition-all duration-300
+            <li
+              className={`transition-all duration-300
                          ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
               style={{ transitionDelay: isMenuOpen ? '200ms' : '0ms' }}
             >
-              <a 
-                href="/about" 
+              <Link
+                to="/about"
                 onClick={() => setIsMenuOpen(false)}
                 className='uppercase font-semibold text-4xl sm:text-5xl hover:opacity-70 transition-opacity'
               >
                 About
-              </a>
+              </Link>
             </li>
 
             {/* Mobile - Contact */}
-            <li 
-              className={`transform transition-all duration-300
+            <li
+              className={`transition-all duration-300
                          ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
               style={{ transitionDelay: isMenuOpen ? '300ms' : '0ms' }}
             >
-              <button 
+              <button
                 onClick={openContact}
                 className='uppercase font-semibold text-4xl sm:text-5xl hover:opacity-70 transition-opacity'
               >
@@ -218,13 +234,13 @@ function Navbar() {
             </li>
 
             {/* Mobile - Social Links */}
-            <li 
-              className={`transform transition-all duration-300 mt-8
+            <li
+              className={`transition-all duration-300 mt-8
                          ${isMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'}`}
               style={{ transitionDelay: isMenuOpen ? '400ms' : '0ms' }}
             >
               <div className='flex gap-6'>
-                <a 
+                <a
                   href="https://instagram.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -232,7 +248,7 @@ function Navbar() {
                 >
                   Instagram
                 </a>
-                <a 
+                <a
                   href="https://youtube.com"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -246,7 +262,7 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Contact Modal - Using your Contact.jsx component */}
+      {/* Contact Modal */}
       <Contact isOpen={isContactOpen} onClose={closeContact} />
     </>
   )

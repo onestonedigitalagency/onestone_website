@@ -1,6 +1,7 @@
 /* ================================
    CSS Variables
    ================================ */
+@import url('https://fonts.googleapis.com/css2?family=Cookie&display=swap');
 :root {
   --accent: #646cff;
   --accent-bg: rgba(100, 108, 255, 0.1);

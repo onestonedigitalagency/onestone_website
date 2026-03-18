@@ -19,39 +19,38 @@ function AboutOverview() {
     return () => clearInterval(interval)
   }, [gifs.length])
 
+  const cookieFont = {
+    fontFamily: "'Cookie', cursive"
+  }
+
   return (
-    <div className='w-screen min-h-screen border border-gray-300'>
+    <div className=' '>
       
-      {/* Row 1 */}
-      <div className='flex flex-col md:flex-row'>
+      {/* Grid Container - ensures perfect alignment */}
+      <div className='grid grid-cols-1 md:grid-cols-[36rem_1px_1fr]'>
         
-        {/* Column 1 - md:w-4xl */}
-        <div className='w-full md:w-[36rem] p-4'>
+        {/* Row 1 - Column 1 */}
+        <div className='p-4'>
           {/* Empty or add content */}
         </div>
         
-        {/* Vertical Separator */}
-        <div className='hidden md:block w-[1px] bg-gray-300'></div>
+        {/* Row 1 - Vertical Separator */}
+        <div className='hidden md:block bg-gray-300'></div>
         
-        {/* Column 2 - Remaining width */}
-        <div className='flex-1 p-4'>
-          <h1 className='mt-24 md:w-4xl text-3xl md:text-5xl leading-tight'>
-            Prototype is a creative-driven hybrid structure, a one-stop shop, from ideas to execution. 
-            We are not just a production house, we are your agency, a design studio, and a digital factory 
+        {/* Row 1 - Column 2 */}
+        <div className='p-4'>
+          <h1 style={cookieFont} className='mt-24 md:w-4xl text-3xl md:text-5xl leading-tight'>
+            OneStone is a creative-driven hybrid structure, a one-stop shop, from ideas to execution. 
+            We are not just a digital agency, we are your design studio, and a digital factory 
             all in one place. A place where brands can be more authentic, bold, and rise above the crowd.
           </h1>
         </div>
-        
-      </div>
 
-      {/* Horizontal Separator */}
-      <div className='w-full h-[1px] bg-gray-300'></div>
+        {/* Horizontal Separator - spans all columns */}
+        <div className='col-span-1 md:col-span-3 h-[1px] bg-gray-300'></div>
 
-      {/* Row 2 */}
-      <div className='flex flex-col md:flex-row'>
-        
-        {/* Column 1 - md:w-4xl (same as Row 1) */}
-        <div className='w-full md:w-[36rem] p-4'>
+        {/* Row 2 - Column 1 */}
+        <div className='p-4'>
           <div className='w-full h-64 md:h-96 overflow-hidden rounded-lg'>
             <img 
               src={gifs[currentGif]} 
@@ -62,16 +61,16 @@ function AboutOverview() {
           </div>
         </div>
         
-        {/* Vertical Separator */}
-        <div className='hidden md:block w-[1px] bg-gray-300'></div>
+        {/* Row 2 - Vertical Separator */}
+        <div className='hidden md:block bg-gray-300'></div>
         
-        {/* Column 2 - Remaining width */}
-        <div className='flex-1 p-4 flex '>
+        {/* Row 2 - Column 2 */}
+        <div className='p-4 flex'>
           <a href="/about" className='underline text-xl md:text-3xl hover:opacity-70 transition-opacity'>
             About us
           </a>
         </div>
-        
+
       </div>
 
     </div>

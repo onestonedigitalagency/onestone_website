@@ -1,12 +1,8 @@
-import React , { useState, useEffect } from 'react'
-import Footer from './Footer'
+import React, { useState, useEffect } from 'react'
 
 function ServicesOverview() {
-
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
 
-  // Array of Unsplash images
   const images = [
     'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=500&fit=crop',
     'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&h=500&fit=crop',
@@ -18,17 +14,16 @@ function ServicesOverview() {
     'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=500&fit=crop',
   ]
 
-  // Change image every second
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => 
+      setCurrentImageIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       )
     }, 1000)
 
-    // Cleanup on unmount
     return () => clearInterval(interval)
   }, [images.length])
+
   const services = [
     {
       id: '01',
@@ -53,34 +48,34 @@ function ServicesOverview() {
   ]
 
   return (
-    <div className='w-screen min-h-screen p-4 md:p-8'> 
+    <div className='w-full min-h-screen'>
       
       {/* Row 1 */}
-      <div id="row-1" className='flex justify-end  pb-8'>
+      <div className='flex justify-end'>
         <h1 className='w-xs md:w-3xl text-5xl md:text-9xl uppercase text-end leading-tight'>
           Our services
         </h1>
       </div>
 
       {/* Row 2 */}
-      <div id="row-2" className='pt-8 pb-8'>
+      <div className='pt-8 pb-8'>
         <h1 className='w-full md:w-3xl text-5xl md:text-9xl uppercase leading-tight'>
           List your services
         </h1>
       </div>
 
-      {/* Row 3 - Services Grid */}
-      <div id="row-3" className='w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-16'>
-        
+      {/* Row 3 */}
+      <div className='w-full grid grid-cols-1 px-10 sm:grid-cols-2 lg:grid-cols-4 gap-8 pt-16'>
         {services.map((service) => (
-          <div key={service.id} className='text-left'>
+          <div key={service.id}>
             <h2 className='text-2xl md:text-3xl font-bold mb-4'>
               {service.id}. {service.title}
             </h2>
-            <ul className='space-y-2'>
+
+            <ul className='space-y-2 '>
               {service.items.map((item, index) => (
-                <li 
-                  key={index} 
+                <li
+                  key={index}
                   className='text-lg text-gray-600 hover:text-black transition-colors cursor-pointer'
                 >
                   {item}
@@ -89,11 +84,8 @@ function ServicesOverview() {
             </ul>
           </div>
         ))}
-
       </div>
 
-        <Footer/>
-      
     </div>
   )
 }
