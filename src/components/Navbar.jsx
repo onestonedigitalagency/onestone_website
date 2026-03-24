@@ -76,7 +76,7 @@ function Navbar() {
     if (isHomePage) {
       return isScrolled
         ? 'bg-white/90 backdrop-blur-md shadow-sm text-black'
-        : 'bg-transparent text-white'
+        : 'bg-transparent text-black'
     }
     
     // Other pages: always black text with white background on scroll
@@ -104,8 +104,8 @@ function Navbar() {
               src={icon} 
               alt="OneStone Logo"
               className={`w-6 h-6 sm:w-8 sm:h-8 md:w-10 object-contain
-                         transition-all duration-500
-                         ${isLightMode ? 'invert brightness-0 invert' : 'brightness-0'}`}
+                         transition-all duration-500`
+                        }
             />
             <span>OneStone</span>
           </Link>
