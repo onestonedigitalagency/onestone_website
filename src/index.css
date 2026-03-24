@@ -3,11 +3,11 @@
 #root {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   color: #1A1A1A;
-  background: #F5F5F3;
+  background: #EAE8E4;
 }
 .portfolio-slider {
   position: relative;
-  background: #F5F5F3;
+  background: #EAE8E4;
 }
 
 .portfolio-slider__sticky {
@@ -19,10 +19,10 @@
 
 .portfolio-slider__grid {
   display: grid;
-  grid-template-columns: 1fr 4fr 1.5fr;
-  gap: 1rem;
+  grid-template-columns: 160px 1fr 160px;
+  gap: 1.5rem;
   height: 100%;
-  padding: 0 4rem;
+  padding: 0 2.5rem;
 }
 
 /* Left Column */
@@ -31,35 +31,55 @@
   flex-direction: column;
   justify-content: center;
   position: relative;
+  min-width: 240px;
 }
 
 .portfolio-slider__counter {
+  margin-top: 15vh;
   margin-bottom: auto;
-  padding-top: 8rem;
   display: flex;
-  align-items: baseline;
+  align-items: baseline; /* Align numerator and denominator on the same baseline */
+  justify-content: flex-start;
+  font-variant-numeric: tabular-nums;
+  position: relative;
+}
+
+.portfolio-slider__counter-ticker {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
 }
 
 .portfolio-slider__counter-num {
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: clamp(4rem, 10vw, 8rem);
   color: #1A1A1A;
-  line-height: 1;
+  line-height: normal; /* Use normal line-height for easier baseline alignment */
+  display: inline-flex;
+  align-items: baseline;
 }
 
 .portfolio-slider__counter-total {
-  font-family: monospace;
-  font-size: 0.875rem;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(1.5rem, 4vw, 3rem); /* Significantly smaller than the current number */
   color: #8A8A8A;
-  margin-left: 0.25rem;
+  margin-left: 0.5rem;
+  display: inline-flex;
+  align-items: baseline;
+  opacity: 0.6;
 }
 
 .portfolio-slider__title-left {
   margin-bottom: 8rem;
   font-size: 0.875rem;
-  color: #8A8A8A;
+  color: #4A4A4A;
   font-style: italic;
+  min-height: 4.5em; /* Increased to accommodate 3 lines reliably */
+  display: flex;
+  align-items: flex-end;
 }
+
 
 .portfolio-slider__decoration {
   position: absolute;
@@ -75,42 +95,50 @@
 .portfolio-slider__center {
   display: flex;
   align-items: center;
+  justify-content: center;
   overflow: hidden;
-}
-
-.portfolio-slider__track {
-  display: flex;
-  gap: 2rem;
-}
-
-.portfolio-slider__card {
-  flex-shrink: 0;
-  width: 35vw;
-  text-decoration: none;
+  position: relative;
 }
 
 .portfolio-slider__image-wrap {
   position: relative;
-  aspect-ratio: 4/5;
+  height: 65vh; /* Taller display area */
+  aspect-ratio: 4/5; /* Portrait mode: height > width */
   overflow: hidden;
-  border-radius: 2px;
-  background: #E5E5E3;
+  background: #F0F0F0; /* Subtle background for the frame */
+  border-radius: 1rem;
+  margin: 0 auto;
+}
+
+.portfolio-slider__image-strip {
+  width: 100%;
+  height: 100%; /* Base height for the motion calculation */
+  display: flex;
+  flex-direction: column;
+}
+
+.portfolio-slider__image-item {
+  width: 100%;
+  height: 100%; /* Occupy exactly the wrap height */
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .portfolio-slider__image {
   position: absolute;
   inset: 0;
-  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.portfolio-slider__card:hover .portfolio-slider__image {
-  transform: scale(1.05);
-}
-
-.portfolio-slider__image img {
+.portfolio-slider__img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover; /* Fill the portrait container */
+  display: block;
 }
 
 .portfolio-slider__placeholder {
@@ -122,7 +150,8 @@
   font-family: 'Instrument Serif', Georgia, serif;
   font-size: 1.25rem;
   font-style: italic;
-  color: rgba(255,255,255,0.4);
+  color: rgba(0,0,0,0.2);
+  background: transparent;
 }
 
 /* Right Column */
@@ -132,18 +161,16 @@
   justify-content: center;
   align-items: flex-end;
   text-align: right;
+  z-index: 5;
 }
 
-.portfolio-slider__category {
-  margin-bottom: 2rem;
-  font-size: 0.875rem;
-  color: #8A8A8A;
-}
-
+/* Brands Section */
 .portfolio-slider__brands {
-  height: 16rem;
-  overflow: hidden;
   position: relative;
+  height: 18rem; /* Show 6 items (3rem each) */
+  overflow: hidden;
+  margin-top: 2rem;
+  mask-image: linear-gradient(to bottom, transparent, black 2rem, black calc(100% - 2rem), transparent);
 }
 
 .portfolio-slider__brands-fade {
@@ -157,31 +184,40 @@
 
 .portfolio-slider__brands-fade--top {
   top: 0;
-  background: linear-gradient(to bottom, #F5F5F3, transparent);
+  background: linear-gradient(to bottom, #EAE8E4, transparent);
 }
 
 .portfolio-slider__brands-fade--bottom {
   bottom: 0;
-  background: linear-gradient(to top, #F5F5F3, transparent);
+  background: linear-gradient(to top, #EAE8E4, transparent);
 }
 
 .portfolio-slider__brands-list {
   display: flex;
   flex-direction: column;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .portfolio-slider__brand {
-  padding: 0.5rem 0;
-  font-size: 0.875rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  font-size: 0.7rem;
+  opacity: 0.15; /* Much lighter for inactive items */
+  color: #1A1A1A;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: rgba(138, 138, 138, 0.4);
-  transition: all 0.3s ease;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: grayscale(1);
 }
 
 .portfolio-slider__brand.is-active {
-  color: #1A1A1A;
-  font-weight: 500;
+  opacity: 1;
+  font-weight: 600;
+  font-size: 0.85rem; /* Larger active text */
+  filter: grayscale(0);
 }
 
 /* Bottom Link */
