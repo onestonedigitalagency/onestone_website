@@ -19,7 +19,7 @@ function Home() {
      
         <Hero/>
       
-      {/* <AboutOverview /> */}
+      <AboutOverview />
       <PortfolioSlider />
       <ServicesOverview />
 

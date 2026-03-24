@@ -258,15 +258,112 @@
 }
 
 @media (max-width: 768px) {
-  .portfolio-slider__grid {
-    grid-template-columns: 1fr;
-    padding: 0 1.5rem;
+  .portfolio-slider__sticky {
+    padding-top: 4rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
   }
-  .portfolio-slider__left,
-  .portfolio-slider__right {
+
+  .portfolio-slider__grid {
+    display: flex !important;
+    flex-direction: column;
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1.5rem;
+    height: 100%;
+    justify-content: flex-start;
+  }
+
+  /* Counter & Title at the Top */
+  .portfolio-slider__left {
+    display: flex !important;
+    flex-direction: column;
+    min-width: 0;
+    justify-content: flex-start;
+    align-items: center;
+    order: 1;
+  }
+
+  .portfolio-slider__counter {
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    justify-content: center;
+  }
+
+  .portfolio-slider__counter-num {
+    font-size: 3rem;
+  }
+
+  .portfolio-slider__counter-total {
+    font-size: 1.25rem;
+  }
+
+  .portfolio-slider__title-left {
+    margin-bottom: 0;
+    min-height: 0;
+    font-size: 0.75rem;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .portfolio-slider__decoration {
     display: none;
   }
-  .portfolio-slider__card {
-    width: 80vw;
+
+  /* Image in the Middle */
+  .portfolio-slider__center {
+    display: flex !important;
+    order: 2;
+    padding: 0;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .portfolio-slider__image-wrap {
+    height: 100%;
+    max-height: 40vh;
+    width: 100%;
+    aspect-ratio: auto;
+  }
+
+  /* Brand List at the Bottom */
+  .portfolio-slider__right {
+    display: flex !important;
+    order: 3;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 4rem; /* Space for link */
+  }
+
+  .portfolio-slider__category {
+    font-size: 0.7rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .portfolio-slider__brands {
+    margin-top: 0;
+    height: 3rem;
+    mask-image: linear-gradient(to bottom, transparent, black 0.5rem, black calc(100% - 0.5rem), transparent);
+  }
+
+  .portfolio-slider__brands-list {
+    align-items: center;
+  }
+
+  .portfolio-slider__brand {
+    justify-content: center;
+    font-size: 0.8rem;
+  }
+
+  .portfolio-slider__brand.is-active {
+    font-size: 1rem;
+  }
+
+  /* Link */
+  .portfolio-slider__link {
+    bottom: 1.5rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
 }
