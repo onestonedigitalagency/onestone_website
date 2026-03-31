@@ -1,71 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react'
-import Footer from './Footer'
+import React, { useEffect } from 'react'
 
-// --- 1. DUMMY DATA (Simulating your database) ---
 const ALL_PROJECTS = [
   { id: 1, title: 'Doctors Dashboard', year: '2026', tags: 'Making Life of doctors and Patients easy', img: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?w=800&q=80' },
   { id: 2, title: 'Faceyoguez', year: '2026', tags: 'Online personalised sessions for yoga and fitness', img: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80' },
-
-   ]
+]
 
 function Work() {
-  // --- 2. STATE MANAGEMENT ---
-  const [displayedProjects, setDisplayedProjects] = useState([])
-  const [hasMore, setHasMore] = useState(true)
-  const [isLoading, setIsLoading] = useState(false)
-  
-  // Reference for the element that triggers the infinite scroll
-  const loaderRef = useRef(null)
-
-  const ITEMS_PER_PAGE = 3 // How many new projects to load each scroll
-
-  // Load initial items on mount
+  // Set page title for SEO
   useEffect(() => {
-    setDisplayedProjects(ALL_PROJECTS.slice(0, 2)) // Load first 2 to fill row 1 (with text block)
+    document.title = 'Selected Works — OneStone'
+    return () => { document.title = 'OneStone — Elite Digital Agency' }
   }, [])
-
-  // --- 3. INFINITE SCROLL LOGIC ---
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const target = entries[0]
-        // If the loader element is visible on screen, and we aren't already loading, load more
-        if (target.isIntersecting && hasMore && !isLoading) {
-          loadMoreProjects()
-        }
-      },
-      { threshold: 0.1 } // Trigger when 10% of the loader is visible
-    )
-
-    if (loaderRef.current) {
-      observer.observe(loaderRef.current)
-    }
-
-    return () => {
-      if (loaderRef.current) observer.unobserve(loaderRef.current)
-    }
-  }, [hasMore, isLoading, displayedProjects])
-
-  const loadMoreProjects = () => {
-    setIsLoading(true)
-    
-    // Simulate a slight network delay so it feels natural
-    setTimeout(() => {
-      const currentLength = displayedProjects.length
-      const nextProjects = ALL_PROJECTS.slice(currentLength, currentLength + ITEMS_PER_PAGE)
-      
-      if (nextProjects.length > 0) {
-        setDisplayedProjects((prev) => [...prev, ...nextProjects])
-      } 
-      
-      // If we've loaded all projects, stop the infinite scroll
-      if (currentLength + nextProjects.length >= ALL_PROJECTS.length) {
-        setHasMore(false)
-      }
-      
-      setIsLoading(false)
-    }, 800) // 800ms fake loading time
-  }
 
   return (
     <div className='w-full min-h-screen pt-24 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32'>
@@ -126,21 +71,9 @@ function Work() {
 
         </div>
 
-        {/* 
-          LOADING TRIGGER 
-          This invisible div triggers the IntersectionObserver when the user scrolls to it 
-        */}
-        <div ref={loaderRef} className='w-full py-10 flex justify-center items-center mb-10'>
-          {isLoading && (
-            <div className='flex flex-col items-center gap-2'>
-               {/* Simple spinning loader */}
-               <div className="w-8 h-8 border-4 border-gray-200 border-t-black rounded-full animate-spin"></div>
-               <span className='uppercase font-semibold tracking-widest text-xs mt-2'>Loading</span>
-            </div>
-          )}
-          {!hasMore && (
-            <span className='text-gray-400 font-light italic'>You've reached the end of the archive.</span>
-          )}
+        {/* End of archive message */}
+        <div className='w-full py-10 flex justify-center items-center mb-10'>
+          <span className='text-gray-400 font-light italic'>You've reached the end of the archive.</span>
         </div>
 
      

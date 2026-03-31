@@ -1,9 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Contact from '../components/Contact'
 
 function About() {
   const [isContactOpen, setIsContactOpen] = useState(false)
+
+  // Set page title for SEO
+  useEffect(() => {
+    document.title = 'About — OneStone'
+    return () => { document.title = 'OneStone — Elite Digital Agency' }
+  }, [])
 
   const openContact = () => setIsContactOpen(true)
   const closeContact = () => setIsContactOpen(false)

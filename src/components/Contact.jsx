@@ -176,6 +176,7 @@ function Contact({ isOpen, onClose }) {
                 >
                   <a
                     href="mailto:Hello@onestone.com"
+                    rel="noopener noreferrer"
                     className="text-lg md:text-3xl italic font-light hover:underline"
                   >
                     Hello@onestone.com

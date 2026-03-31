@@ -1,6 +1,4 @@
 
-import { useState } from "react";
-
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainLayout from "./components/layout/Layout";
 import Work from "./components/Work";
@@ -9,8 +7,6 @@ import NotFound from "./components/pages/NotFound";
 import Home from "./components/Home";
 
 function App() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
-
   return (
     
     <Router>

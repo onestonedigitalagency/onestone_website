@@ -1,28 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 
 function ServicesOverview() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0)
-
-  const images = [
-    'https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=500&fit=crop',
-    'https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=400&h=500&fit=crop',
-    'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=400&h=500&fit=crop',
-    'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400&h=500&fit=crop',
-    'https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=400&h=500&fit=crop',
-    'https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=400&h=500&fit=crop',
-    'https://images.unsplash.com/photo-1541643600914-78b084683601?w=400&h=500&fit=crop',
-    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=500&fit=crop',
-  ]
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
-      )
-    }, 1000)
-
-    return () => clearInterval(interval)
-  }, [images.length])
 
   const services = [
     {

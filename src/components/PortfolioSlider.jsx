@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { motion, useScroll, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -33,9 +33,18 @@ const projects = [
 const PortfolioSlider = () => {
   const containerRef = useRef(null)
   const [currentIndex, setCurrentIndex] = useState(0)
+  const [viewportHeight, setViewportHeight] = useState(0)
 
   // Average scroll distance per project to make it feel natural
   const scrollDistance = 800 * (projects.length - 1)
+
+  // Safe viewport height measurement (SSR-safe)
+  useEffect(() => {
+    setViewportHeight(window.innerHeight)
+    const handleResize = () => setViewportHeight(window.innerHeight)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   // Preload images on mount
   useEffect(() => {
@@ -77,7 +86,7 @@ const PortfolioSlider = () => {
   }, [])
 
   // Calculate container height based on scroll distance needed
-  const containerHeight = scrollDistance + window.innerHeight
+  const containerHeight = scrollDistance + viewportHeight
 
   return (
     <section
@@ -153,8 +162,10 @@ const PortfolioSlider = () => {
                   <div key={project.id} className="portfolio-slider__image-item">
                     <img 
                       src={project.image} 
-                      alt={project.title} 
+                      alt={project.client} 
                       className="portfolio-slider__img"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 ))}
