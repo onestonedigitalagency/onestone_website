@@ -13,7 +13,7 @@ import asset6 from '../assets/email.gif'
 import asset7 from '../assets/time.gif'
 import asset8 from '../assets/solution.jpg'
 import asset9 from '../assets/demo.gif'
-import asset10 from '../assets/meeting.gif'
+import asset10 from '../assets/Meeting.gif'
 
 gsap.registerPlugin(ScrollTrigger)
 
