@@ -27,24 +27,20 @@ function ServicesOverview() {
   const services = [
     {
       id: '01',
-      title: 'Branding',
-      items: ['Art direction', 'Brand Strategy', 'Tone & Voice', 'Insights', 'Content strategy']
+      title: 'We Build It For You',
+      items: ['Build Your Idea', 'Custom Tool Build', 'Launch Page ', 'Connect Your Tools', 'Add AI to Your Business']
     },
     {
       id: '02',
-      title: 'Creative',
-      items: ['Storytelling', 'Copywriting', 'Social media guidelines', 'Photo + Video direction', '3D Visualization']
+      title: 'We Fix & Improve What You Have',
+      items: ['Website Health Check', 'Fix My Existing System', 'Speed Up My System', 'Secure My Website ', 'Get a Clear Plan First']
     },
     {
       id: '03',
-      title: 'Digital',
-      items: ['Web Design', 'UI/UX', 'Development', 'E-commerce', 'SEO']
+      title: 'We Stay With You',
+      items: ['Monthly Care Plan', 'Keep My Site Fast & Healthy ', 'Your Tech Person, On Demand', 'SEO/GEO/AEO optimization', 'We Build, You Sell']
     },
-    {
-      id: '04',
-      title: 'Production',
-      items: ['Video Production', 'Photography', 'Motion Graphics', 'Post Production', 'Sound Design']
-    }
+
   ]
 
   return (
@@ -52,10 +48,10 @@ function ServicesOverview() {
     
       <div className='flex justify-end px-10'>
         <h1 className='w-xs md:w-3xl text-5xl md:text-9xl uppercase text-end leading-tight'>
-          Our services
+          Other services
         </h1>
       </div>
-      <div className='w-full grid grid-cols-1 px-10 sm:grid-cols-2 lg:grid-cols-4 justify-between pt-16'>
+      <div className='w-full grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 px-10 pt-16'>
         {services.map((service) => (
           <div key={service.id}>
             <h2 className='text-2xl md:text-3xl font-bold mb-4'>

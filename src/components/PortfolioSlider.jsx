@@ -4,16 +4,16 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // Import assets (GIFs and JPGs)
-import asset1 from '../assets/1.gif'
-import asset2 from '../assets/2.gif'
-import asset3 from '../assets/3.gif'
-import asset4 from '../assets/4.gif'
-import asset6 from '../assets/6.jpg'
-import asset7 from '../assets/7.jpg'
-import asset8 from '../assets/8.jpg'
-import asset9 from '../assets/9.gif'
-import asset10 from '../assets/10.jpg'
-import asset11 from '../assets/11.gif'
+import asset1 from '../assets/web_and_app_development.jpg'
+import asset2 from '../assets/AI_Automation.gif'
+import asset3 from '../assets/UI_UX_deveopment.gif'
+import asset4 from '../assets/SAAS_development.jpg'
+import asset5 from '../assets/audit.gif'  
+import asset6 from '../assets/email.gif'
+import asset7 from '../assets/time.gif'
+import asset8 from '../assets/solution.jpg'
+import asset9 from '../assets/demo.gif'
+import asset10 from '../assets/meeting.gif'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -22,11 +22,11 @@ const projects = [
   { id: 2, title: 'We embed intelligent AI automation deep into your workflow — cutting repetitive work, accelerating decisions, and freeing your team to focus on what actually moves the needle. Bespoke systems built for measurable ROI from day one.', client: 'AI Automation', category: 'What We DO', image: asset2, slug: 'digital-dream' },
   { id: 3, title: 'We craft interfaces with obsessive attention to detail — tailored to your brand, your audience, and your conversion goals. Every pixel has a purpose. Every interaction builds trust. Design that doesn\'t just look good — it performs.', client: 'UI/UX Development', category: 'What We DO', image: asset3, slug: 'ethereal-flow' },
   { id: 4, title: 'We build end-to-end SaaS platforms engineered for scale, retention, and revenue. From onboarding to billing to core features — bespoke, fully customizable architecture that grows as fast as your ambition demands.', client: 'SaaS Development', category: 'What We DO', image: asset4, slug: 'kinetic-art' },
-  { id: 5, title: 'We forensically audit your existing site — uncovering every bottleneck, broken flow, and missed conversion. You get a clear, prioritized roadmap backed by data and creative confidence. Know exactly what\'s costing you growth.', client: 'Website Audit', category: 'What We DO', image: asset11, slug: 'dynamic-pulse' },
+  { id: 5, title: 'We forensically audit your existing site — uncovering every bottleneck, broken flow, and missed conversion. You get a clear, prioritized roadmap backed by data and creative confidence. Know exactly what\'s costing you growth.', client: 'Website Audit', category: 'What We DO', image: asset5, slug: 'dynamic-pulse' },
   { id: 6, title: 'It starts with one email. No endless forms, no pushy sales calls. Share your vision, your problem, your ambition — and we take it from there. The best partnerships begin with a conversation, not a contract.', client: 'Drop Us an Email', category: 'How We Work', image: asset6, slug: 'still-narrative' },
   { id: 7, title: 'We connect at your time, on your terms. We listen deeply, ask the right questions, and map your goals with precision. No assumptions. No generic briefs. Just a tailored understanding of exactly what you need to win.', client: 'We Connect at Your Time', category: 'How We Work', image: asset7, slug: 'aesthetic-lens' },
   { id: 8, title: 'We don\'t hand you a copy-paste proposal. We craft a bespoke strategy built around your market, your users, and your ROI targets. Every recommendation is research-backed, creatively confident, and built to move fast.', client: 'We Craft the Best Solution', category: 'How We Work', image: asset8, slug: 'urban-vision' },
-  { id: 9, title: 'While others are still in discovery calls, you\'re already seeing your product come to life. A working demo lands in your hands within 3 days — tangible, tailored, and built to validate your vision before anything else.', client: 'Demo in 3 Days', category: 'How We Work', image: asset9, slug: 'fluid-motion' },
+  { id: 9, title: 'While others are still in discovery calls, you\'re already seeing your product come to life. A working demo lands in your hands within 24 hours — tangible, tailored, and built to validate your vision before anything else.', client: 'Demo in 24 Hours', category: 'How We Work', image: asset9, slug: 'fluid-motion' },
   { id: 10, title: 'Once you\'re confident in the vision, we handle the boring bits — paperwork, agreements, and onboarding — so you never lose momentum. Then we get straight to building the thing that will define your next chapter.', client: 'Then the Easy Part', category: 'How We Work', image: asset10, slug: 'modern-essence' },
 ]
 

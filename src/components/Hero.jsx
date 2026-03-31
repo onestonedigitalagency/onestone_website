@@ -273,8 +273,8 @@ function Hero() {
           animate={!isLoading ? 'visible' : 'hidden'}
         >
           <motion.div className="overflow-hidden mb-4" variants={itemVariants}>
-            <span className="text-[#1a1a1a]/60 text-sm sm:text-base uppercase tracking-[0.3em] font-medium">
-              Creative Design Studio
+            <span className="text-[#1a1a1a]/60 text-sm sm:text-base uppercase tracking-[0.3em] font-medium">  
+              Elite Digital Agency
             </span>
           </motion.div>
 

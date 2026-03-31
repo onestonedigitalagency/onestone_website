@@ -3,11 +3,9 @@ import Footer from './Footer'
 
 // --- 1. DUMMY DATA (Simulating your database) ---
 const ALL_PROJECTS = [
-  { id: 1, title: 'Lumina', year: '2024', tags: 'Brand Identity, Web Design', img: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?w=800&q=80' },
-  { id: 2, title: 'Aura', year: '2023', tags: 'Art Direction, 3D Motion', img: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80' },
-  { id: 3, title: 'Nexus', year: '2024', tags: 'UI/UX, App Development', img: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80' },
-  { id: 4, title: 'Kroma', year: '2023', tags: 'Packaging, Print', img: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80' },
-  { id: 5, title: 'Verve', year: '2024', tags: 'Photography, Campaign', img: 'https://images.unsplash.com/photo-1528301721190-186c3bd85418?w=800&q=80' },
+  { id: 1, title: 'Doctors Dashboard', year: '2026', tags: 'Making Life of doctors and Patients easy', img: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?w=800&q=80' },
+  { id: 2, title: 'Faceyoguez', year: '2026', tags: 'Online personalised sessions for yoga and fitness', img: 'https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&q=80' },
+
    ]
 
 function Work() {
@@ -86,14 +84,21 @@ function Work() {
               <React.Fragment key={project.id}>
                 
                 {/* Standard Project Card */}
-                <div className='flex flex-col group cursor-pointer'>
-                    <div className='w-full aspect-[4/5] overflow-hidden rounded-xl bg-gray-100'>
+                <div className='flex flex-col group cursor-pointer relative'>
+                    <div className='w-full aspect-[4/5] overflow-hidden rounded-xl bg-gray-100 relative'>
                         <img 
                             src={project.img} 
                             alt={project.title} 
-                            className='w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out'
+                            className='w-full h-full object-cover blur-xl scale-110 group-hover:scale-125 transition-transform duration-700 ease-in-out'
                             loading="lazy"
                         />
+                        {/* Hover Overlay with Gen Z Text */}
+                        <div className='absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300 p-6 text-center pointer-events-none'>
+                            <p className='text-white font-medium text-lg md:text-xl xl:text-2xl leading-snug drop-shadow-md'>
+                                gatekeeping this rn 💅<br/><br/>
+                                <span className="opacity-90 text-sm md:text-base xl:text-lg">drop an email to get on the VIP list 👀✨</span>
+                            </p>
+                        </div>
                     </div>
                     <div className='mt-4 flex justify-between items-center'>
                         <h2 className='text-2xl uppercase font-semibold'>{project.title}</h2>
@@ -102,16 +107,16 @@ function Work() {
                     <p className='text-gray-600 font-light mt-1'>{project.tags}</p>
                 </div>
 
-                {/* Inject the "We work on" text block EXACTLY after the first project */}
+                {/* Inject the text block EXACTLY after the first project */}
                 {index === 0 && (
                   <div className='flex flex-col items-center justify-center text-center p-8 border-y md:border-y-0 md:border-x border-gray-300 py-16 md:py-0'>
-                      <h2 className='text-4xl md:text-5xl uppercase font-medium leading-tight'>
-                          We work on <br/>
-                          <span className='font-cookie normal-case text-5xl md:text-7xl'>everything</span><br/>
-                          creative
+                      <h2 className='text-3xl md:text-4xl lg:text-5xl uppercase font-medium leading-[1.1]'>
+                          Currently <br/>
+                          <span className='font-cookie normal-case text-5xl md:text-6xl lg:text-7xl'>working</span><br/>
+                          on two cool projects
                       </h2>
                       <p className='mt-6 text-gray-500 font-light text-sm md:text-base max-w-[250px]'>
-                          From physical products to digital experiences, we build brands that stand out.
+                          Reach us to know more.
                       </p>
                   </div>
                 )}
