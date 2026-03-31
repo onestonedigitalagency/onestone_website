@@ -13,7 +13,7 @@ import asset6 from '../assets/email.gif'
 import asset7 from '../assets/time.gif'
 import asset8 from '../assets/solution.jpg'
 import asset9 from '../assets/demo.gif'
-import asset10 from '../assets/Meeting_Final.gif'
+import AssetMeetingFixed from '../assets/Meeting_Final.gif'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -27,7 +27,7 @@ const projects = [
   { id: 7, title: 'We connect at your time, on your terms. We listen deeply, ask the right questions, and map your goals with precision. No assumptions. No generic briefs. Just a tailored understanding of exactly what you need to win.', client: 'We Connect at Your Time', category: 'How We Work', image: asset7, slug: 'aesthetic-lens' },
   { id: 8, title: 'We don\'t hand you a copy-paste proposal. We craft a bespoke strategy built around your market, your users, and your ROI targets. Every recommendation is research-backed, creatively confident, and built to move fast.', client: 'We Craft the Best Solution', category: 'How We Work', image: asset8, slug: 'urban-vision' },
   { id: 9, title: 'While others are still in discovery calls, you\'re already seeing your product come to life. A working demo lands in your hands within 24 hours — tangible, tailored, and built to validate your vision before anything else.', client: 'Demo in 24 Hours', category: 'How We Work', image: asset9, slug: 'fluid-motion' },
-  { id: 10, title: 'Once you\'re confident in the vision, we handle the boring bits — paperwork, agreements, and onboarding — so you never lose momentum. Then we get straight to building the thing that will define your next chapter.', client: 'Then the Easy Part', category: 'How We Work', image: asset10, slug: 'modern-essence' },
+  { id: 10, title: 'Once you\'re confident in the vision, we handle the boring bits — paperwork, agreements, and onboarding — so you never lose momentum. Then we get straight to building the thing that will define your next chapter.', client: 'Then the Easy Part', category: 'How We Work', image: AssetMeetingFixed, slug: 'modern-essence' },
 ]
 
 const PortfolioSlider = () => {
